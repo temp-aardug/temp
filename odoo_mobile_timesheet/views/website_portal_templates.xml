@@ -225,14 +225,27 @@
                                             <div class="form-group  col-lg-6">
                                             </div>
                                             <div class="clearfix"/>
-                                            <div class="form-group  col-lg-6">
-                                                <label class="control-label" for="start_time">Start Time</label>
-                                                <input class="form-control" type="time" name="start_time" id="start_time" min="00:00" max="23:59" t-att-value="start_time"/>
+                                            <div class="form-group  col-lg-6" id="employee">
+                                                <label class="control-label" for="employee_id">Employee</label>
+                                                    <select id="create_select" name="employee_id" required="required" class="form-control">
+                                                        <option value="">Select Employee...</option>
+                                                        <t t-foreach="request.env['hr.employee'].search([('active','=',True)])" t-as="employee">
+                                                            <option t-att-value="employee.id" t-att-selected="employee.id == employees and 'selected' or null">
+                                                                <t t-esc="employee.name" />
+                                                            </option>
+                                                        </t>
+                                                    </select>
                                             </div>
                                             <div class="form-group  col-lg-6">
-                                                <label class="control-label" for="end_time">End Time</label>
-                                                <input class="form-control" type="time" name="end_time" id="end_time" min="00:00" max="23:59" t-att-value="end_time"/>
                                             </div>
+<!--                                            <div class="form-group  col-lg-6">-->
+<!--                                                <label class="control-label" for="start_time">Start Time</label>-->
+<!--                                                <input class="form-control" type="time" name="start_time" id="start_time" min="00:00" max="23:59" t-att-value="start_time"/>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-group  col-lg-6">-->
+<!--                                                <label class="control-label" for="end_time">End Time</label>-->
+<!--                                                <input class="form-control" type="time" name="end_time" id="end_time" min="00:00" max="23:59" t-att-value="end_time"/>-->
+<!--                                            </div>-->
                                             <div class="form-group  col-lg-6">
                                                 <label class="control-label" for="is_billable">Is Billable</label>
                                                 <p>
@@ -342,13 +355,23 @@
                                             </div>
                                             <div class="clearfix"/>
                                             <div class="form-group  col-lg-6">
-                                                <label class="control-label" for="start_time">Start Time</label>
-                                                <input class="form-control" id="start_time" name="start_time" type="time" min="00:00" max="23:59" title="quantity" t-att-value="'%02d:%02d' % (int(str(line.start_time).split('.')[0]), int(float(str('%.2f' % line.start_time).split('.')[1])/100*60))"/>
+                                                <label class="control-label" for="employee_id">Employee</label>
+                                                <select name="employee_id" disabled="disabled" required="required" class="form-control">
+                                                    <option t-att-value="line.employee_id.id" t-att-selected="line.employee_id.id or null">
+                                                        <t t-esc="line.employee_id.name"/>
+                                                    </option>
+                                                </select>
                                             </div>
                                             <div class="form-group  col-lg-6">
-                                                <label class="control-label" for="end_time">End Time</label>
-                                                <input class="form-control" id="end_time" name="end_time" type="time" min="00:00" max="23:59" title="end_time" t-att-value="'%02d:%02d' % (int(str(line.end_time).split('.')[0]), int(float(str('%.2f' % line.end_time).split('.')[1])/100*60))"/>
                                             </div>
+<!--                                            <div class="form-group  col-lg-6">-->
+<!--                                                <label class="control-label" for="start_time">Start Time</label>-->
+<!--                                                <input class="form-control" id="start_time" name="start_time" type="time" min="00:00" max="23:59" title="quantity" t-att-value="'%02d:%02d' % (int(str(line.start_time).split('.')[0]), int(float(str('%.2f' % line.start_time).split('.')[1])/100*60))"/>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-group  col-lg-6">-->
+<!--                                                <label class="control-label" for="end_time">End Time</label>-->
+<!--                                                <input class="form-control" id="end_time" name="end_time" type="time" min="00:00" max="23:59" title="end_time" t-att-value="'%02d:%02d' % (int(str(line.end_time).split('.')[0]), int(float(str('%.2f' % line.end_time).split('.')[1])/100*60))"/>-->
+<!--                                            </div>-->
                                             <div class="form-group  col-lg-6">
                                                 <label class="control-label" for="is_billable">Is Billable</label>
                                                 <p>

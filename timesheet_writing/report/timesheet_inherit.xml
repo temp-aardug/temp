@@ -34,27 +34,37 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th class="align-middle"><span>Date</span></th>
-                        <th class="align-middle"><span>Responsible</span></th>
-                        <th class="align-middle"><span>Description</span></th>
-                        <th class="align-middle" t-if="show_project"><span>Project</span></th>
-                        <th class="align-middle" t-if="show_task"><span>Task</span></th>
+                        <th class="align-middle">
+                            <span>Date</span>
+                        </th>
+                        <th class="align-middle">
+                            <span>Responsible</span>
+                        </th>
+                        <th class="align-middle">
+                            <span>Description</span>
+                        </th>
+                        <th class="align-middle" t-if="show_project">
+                            <span>Project</span>
+                        </th>
+                        <th class="align-middle" t-if="show_task">
+                            <span>Task</span>
+                        </th>
                         <th class="text-right">
                             <span t-if="is_uom_day">Time Spent (Days)</span>
                             <span t-else="">Time Spent (Hours)</span>
                         </th>
                     </tr>
-               </thead>
-               <tbody>
-                    <t t-if="doc_model == 'project.task'">
-                        <t t-foreach="lines" t-as="l">
+                </thead>
+                <tbody>
+                    <t t-if="doc_model == 'account.analytic.line'">
+                        <t t-foreach="docs.sorted(key=lambda r: r.date, reverse=False)" t-as="l">
                             <tr>
                                 <td style="width:100px;">
-                                   <span t-field="l.date"/>
+                                    <span t-field="l.date"/>
                                 </td>
                                 <td>
-                                   <span t-field="l.user_id.partner_id.name"/>
-                                   <span t-if="not l.user_id.partner_id.name" t-field="l.employee_id"/>
+                                    <span t-field="l.user_id.partner_id.name"/>
+                                    <span t-if="not l.user_id.partner_id.name" t-field="l.employee_id"/>
                                 </td>
                                 <td>
                                     <span t-field="l.name" t-options="{'widget': 'text'}"/>
@@ -63,11 +73,15 @@
                                     <span t-field="l.project_id.sudo().name"/>
                                 </td>
                                 <td t-if="show_task">
-                                    <t t-if="l.task_id"><span t-field="l.task_id.sudo().name"/></t>
+                                    <t t-if="l.task_id">
+                                        <span t-field="l.task_id.sudo().name"/>
+                                    </t>
                                 </td>
                                 <td class="text-right">
-                                    <span t-if="is_uom_day" t-esc="l._get_timesheet_time_day()" t-options="{'widget': 'timesheet_uom'}"/>
-                                    <span t-else="" t-field="l.unit_amount" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"/>
+                                    <span t-if="is_uom_day" t-esc="l._get_timesheet_time_day()"
+                                          t-options="{'widget': 'timesheet_uom'}"/>
+                                    <span t-else="" t-field="l.unit_amount"
+                                          t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"/>
                                 </td>
                             </tr>
                             <tr t-if="l.xaa_aa_long_description">
@@ -80,14 +94,14 @@
                         </t>
                     </t>
                     <t t-else="">
-                        <t t-foreach="docs.sorted(key=lambda r: r.date, reverse=False)" t-as="l">
+                        <t t-foreach="lines" t-as="l">
                             <tr>
                                 <td style="width:100px;">
-                                   <span t-field="l.date"/>
+                                    <span t-field="l.date"/>
                                 </td>
                                 <td>
-                                   <span t-field="l.user_id.partner_id.name"/>
-                                   <span t-if="not l.user_id.partner_id.name" t-field="l.employee_id"/>
+                                    <span t-field="l.user_id.partner_id.name"/>
+                                    <span t-if="not l.user_id.partner_id.name" t-field="l.employee_id"/>
                                 </td>
                                 <td>
                                     <span t-field="l.name" t-options="{'widget': 'text'}"/>
@@ -96,11 +110,15 @@
                                     <span t-field="l.project_id.sudo().name"/>
                                 </td>
                                 <td t-if="show_task">
-                                    <t t-if="l.task_id"><span t-field="l.task_id.sudo().name"/></t>
+                                    <t t-if="l.task_id">
+                                        <span t-field="l.task_id.sudo().name"/>
+                                    </t>
                                 </td>
                                 <td class="text-right">
-                                    <span t-if="is_uom_day" t-esc="l._get_timesheet_time_day()" t-options="{'widget': 'timesheet_uom'}"/>
-                                    <span t-else="" t-field="l.unit_amount" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"/>
+                                    <span t-if="is_uom_day" t-esc="l._get_timesheet_time_day()"
+                                          t-options="{'widget': 'timesheet_uom'}"/>
+                                    <span t-else="" t-field="l.unit_amount"
+                                          t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"/>
                                 </td>
                             </tr>
                             <tr t-if="l.xaa_aa_long_description">
@@ -119,20 +137,24 @@
                         <td class="text-right" t-attf-colspan="{{nbCols}}">
                             <strong t-if="is_uom_day">
                                 <span style="margin-right: 15px;">Total (Days)</span>
-                                <t t-if="doc_model == 'project.task'">
-                                    <t t-esc="lines._convert_hours_to_days(sum(lines.mapped('unit_amount')))" t-options="{'widget': 'timesheet_uom'}"/>
+                                <t t-if="doc_model == 'account.analytic.line'">
+                                    <t t-esc="docs._convert_hours_to_days(sum(docs.mapped('unit_amount')))"
+                                       t-options="{'widget': 'timesheet_uom'}"/>
                                 </t>
                                 <t t-else="">
-                                    <t t-esc="docs._convert_hours_to_days(sum(docs.mapped('unit_amount')))" t-options="{'widget': 'timesheet_uom'}"/>
+                                    <t t-esc="lines._convert_hours_to_days(sum(lines.mapped('unit_amount')))"
+                                       t-options="{'widget': 'timesheet_uom'}"/>
                                 </t>
                             </strong>
                             <strong t-else="">
                                 <span style="margin-right: 15px;">Total (Hours)</span>
-                                <t t-if="doc_model == 'project.task'">
-                                    <t t-esc="sum(lines.mapped('unit_amount'))" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"/>
+                                <t t-if="doc_model == 'account.analytic.line'">
+                                    <t t-esc="sum(docs.mapped('unit_amount'))"
+                                       t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"/>
                                 </t>
                                 <t t-else="">
-                                    <t t-esc="sum(docs.mapped('unit_amount'))" t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"/>
+                                    <t t-esc="sum(lines.mapped('unit_amount'))"
+                                       t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"/>
                                 </t>
                             </strong>
                         </td>

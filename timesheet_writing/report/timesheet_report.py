@@ -23,7 +23,7 @@ class ReportTimesheetWriting(models.AbstractModel):
             emp_dict[emp.name] = sum(analytic_ids.mapped('unit_amount'))
         return {
             'doc_ids': docids,
-            'doc_model': self.env['account.analytic.line'],
+            'doc_model': 'account.analytic.line',
             'data': data,
             'docs': docs,
             'min_date': min(date_lst),

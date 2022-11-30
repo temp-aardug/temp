@@ -142,6 +142,23 @@
                                                     <input type="checkbox" name="is_paid" id="is_paid"/>
                                                 </p>
                                             </div> -->
+                                            <div class="mb-3 col-lg-6">
+                                                <t t-if="user_id.xaa_aa_is_show_employee">
+                                                    <label class="form-label" for="employee_id">Employee</label>
+                                                    <select id="create_employee" name="employee_id" required="required" class="form-select" style="border-color: #27BB64">
+                                                        <option value="">Select Employee...</option>
+                                                        <t t-foreach="employee_ids or []" t-as="employee">
+                                                            <option t-att-value="employee.id" t-att-selected="employee.id == current_employee.id" t-att-data-work_type="employee.xaa_aa_work_type_id.id">
+                                                                <t t-esc="employee.name" />
+                                                            </option>
+                                                        </t>
+                                                    </select>
+                                                </t>
+                                            </div>
+                                            <div class="mb-3 col-lg-6">
+                                                <label class="form-label" for="date_action">Date</label>
+                                                    <input type="date" id="start_date" name="start_date" class="form-control" required="required" t-att-value="timesheet_date" style="border-color: #27BB64"/>
+                                            </div>
                                             <div class="mb-3 col-md-12">
                                                 <label class="form-label" for="description">Description</label>
                                                 <textarea class="form-control o_website_form_input" required="required" id="description" name="description" style="border-color: #27BB64"></textarea>
@@ -163,23 +180,7 @@
                                                 <input type='file' id="inputFile" name="xaa_aa_image_up" class="form-control o_website_form_input"/><br/>
                                                 <img class="mt8" id="imgPreview" src="/web/static/img/placeholder.png" style="max-width:270px;"/>
                                             </div>
-                                            <div class="mb-3 col-lg-6">
-                                                <label class="form-label" for="date_action">Date</label>
-                                                    <input type="date" id="start_date" name="start_date" class="form-control" required="required" t-att-value="timesheet_date" style="border-color: #27BB64"/>
-                                            </div>
-                                            <div class="mb-3 col-lg-6">
-                                                <t t-if="user_id.xaa_aa_is_show_employee">
-                                                    <label class="form-label" for="employee_id">Employee</label>
-                                                    <select id="create_employee" name="employee_id" required="required" class="form-select" style="border-color: #27BB64">
-                                                        <option value="">Select Employee...</option>
-                                                        <t t-foreach="employee_ids or []" t-as="employee">
-                                                            <option t-att-value="employee.id" t-att-selected="employee.id == current_employee.id" t-att-data-work_type="employee.xaa_aa_work_type_id.id">
-                                                                <t t-esc="employee.name" />
-                                                            </option>
-                                                        </t>
-                                                    </select>
-                                                </t>
-                                            </div>
+
                                             <input type="hidden" name="redirect" t-att-value="redirect"/>
                                         </div>
 

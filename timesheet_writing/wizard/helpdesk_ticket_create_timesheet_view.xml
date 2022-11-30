@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="helpdesk_ticket_create_timesheet" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.create.timesheet</field>
+            <field name="model">helpdesk.ticket.create.timesheet</field>
+            <field name="inherit_id" ref="helpdesk_timesheet.helpdesk_ticket_create_timesheet_view_form"/>
+            <field name="arch" type="xml">
+                <field name="description" position="after">
+                    <group>
+                        <field name="xaa_aa_long_desc_id" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True}"
+                        attrs="{'invisible': [('xaa_aa_long_desc', '!=',False)]}"
+                        />
+                        <field name="xaa_aa_long_desc" attrs="{'invisible': [('xaa_aa_long_desc_id', '!=', False)]}"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

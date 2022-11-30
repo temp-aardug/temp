@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="helpdesk_description_form_view" model="ir.ui.view">
+            <field name="name">helpdesk.description</field>
+            <field name="model">helpdesk.description</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="xaa_aa_name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="helpdesk_description_tree_view" model="ir.ui.view">
+            <field name="name">helpdesk.description</field>
+            <field name="model">helpdesk.description</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="xaa_aa_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_helpdesk_description" model="ir.actions.act_window">
+            <field name="name">Helpdesk Description</field>
+            <field name="res_model">helpdesk.description</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_helpdesk_description"
+            name="Helpdesk Description"
+            sequence="30"
+            action="action_helpdesk_description"
+            parent="helpdesk.helpdesk_ticket_menu_main"/>
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <record model="ir.ui.view" id="account_analytic_line_tree_timesheet_view_inherit">
+            <field name="name">account.analytic.line.list</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+            <field name="arch" type="xml">
+                 <field name="is_billable" position="attributes">
+                    <attribute name="string">Non-Billable</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

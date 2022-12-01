@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_move_amount_view_form" model="ir.ui.view">
+        <field name="name">account.move.amount.form</field>
+        <field name="model">account.move.amount</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="move_id" invisible="1"/>
+                <field name="warning_message" nolabel="1" readonly="1"/>
+                <footer>
+                    <button string="Cancel" name="action_cancel"
+                            type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="report_web_quotation_custom" model="ir.actions.report">
+        <field name="name">Web Quotation</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">quote_print.custom_web_quote_print</field>
+        <field name="report_file">quote_print.quotation_report</field>
+        <field name="print_report_name">('Web Quotation')</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id"
+               ref="quote_print.quote_print_custom_header_paperformat_update"/>
+    </record>
+
+    <record id="report_web_quote_cover" model="ir.actions.report">
+        <field name="name">Cover Image Report</field>
+        <field name="model">sale.order.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">quote_print.report_quote_cover</field>
+        <field name="report_file">quote_print.cover_image_report</field>
+        <field name="print_report_name">('Cover Image Report')</field>
+        <field name="binding_model_id"
+               ref="sale_management.model_sale_order_template"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id"
+               ref="quote_print.quote_print_cover_paperformat"/>
+    </record>
+
+    <record id="report_web_quote_close" model="ir.actions.report">
+        <field name="name">Close Image Report</field>
+        <field name="model">sale.order.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">quote_print.report_quote_close</field>
+        <field name="report_file">quote_print.close_image_report</field>
+        <field name="print_report_name">('Close Image Report')</field>
+        <field name="binding_model_id"
+               ref="sale_management.model_sale_order_template"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id"
+               ref="quote_print.quote_print_close_paperformat"/>
+    </record>
+
+</odoo>

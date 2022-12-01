@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_order_quote_print_inh" model="ir.ui.view">
+            <field name="name">sale.order.form.inh</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_management.sale_order_form_quote"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='action_confirm']"
+                       position="after">
+                    <button name="get_quote_print_pdf" type="object"
+                            string="Print Online Quotation"
+                            groups="base.group_user" states="draft,sent,sale"/>
+                </xpath>
+
+                <xpath expr="//field[@name='client_order_ref']" position="after">
+                    <field name="xaa_aa_website_desc_footer" invisible="1"/>
+                    <field name="xaa_aa_website_desc_footer_bellow" invisible="1"/>
+                    <field name="xaa_aa_cover_image" invisible="1"/>
+                    <field name="xaa_aa_close_image" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="xaa_aa_show_only_total"/>
+                </xpath>
+                <xpath expr="//group[@name='sales_person']/field[@name='user_id']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='show_update_pricelist']"
+                       position="before">
+                    <field name="user_id" domain="[('share', '=', False)]"
+                           widget="many2one_avatar_user"/>
+                </xpath>
+                <xpath expr="//field[@name='sale_order_template_id']"
+                       position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_move_print_inh" model="ir.ui.view">
+            <field name="name">account.move.form.inh</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_date']" position="after">
+                    <field name="xaa_aa_show_only_total"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_order_tree_inher" model="ir.ui.view">
+            <field name="name">sale.order.tree.inh</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='team_id']" position="before">
+                    <field name="margin" optional="hide"/>
+                    <field name="margin_percent" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_quotation_tree_inher" model="ir.ui.view">
+            <field name="name">sale.quote.tree.inh</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='team_id']" position="before">
+                    <field name="margin" optional="hide"/>
+                    <field name="margin_percent" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_sale_quote_template_form_inherit">
+            <field name="name">sale.order.template.form.inherit</field>
+            <field name="model">sale.order.template</field>
+            <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='number_of_days']" position="after">
+                    <label for="xaa_aa_cover_image"/>
+                    <div id="xaa_aa_cover_image">
+                        <field name="xaa_aa_cover_image" class="oe_inline"
+                               filename="xaa_aa_file_name_cover"/>
+                        <field class="oe_inline" name="xaa_aa_file_name_cover"
+                            invisible="1"/>
+                    </div>
+                    <label for="xaa_aa_report_layout"/>
+                    <div id="xaa_aa_report_layout">
+                        <field name="xaa_aa_report_layout" class="oe_inline"/>
+                    </div>
+                    <label for="xaa_aa_cover_height" groups="base.group_no_one"/>
+                    <div id="xaa_aa_cover_height" groups="base.group_no_one">
+                        <field name="xaa_aa_cover_height" class="oe_inline"/>
+                    </div>
+                    <label for="xaa_aa_isfooteradrsimg_first_page"/>
+                    <div id="xaa_aa_isfooteradrsimg_first_page">
+                        <field class="oe_inline" 
+                               name="xaa_aa_isfooteradrsimg_first_page" />
+                    </div>
+                </xpath>
+                <xpath expr="//form/sheet/group[1]/group" position="after">
+                    <group>
+                        <label for="xaa_aa_close_image"/>
+                        <div id="xaa_aa_close_image">
+                            <field class="oe_inline" name="xaa_aa_close_image"
+                                   filename="xaa_aa_file_name_close" />
+                            <field class="oe_inline" name="xaa_aa_file_name_close"
+                                   invisible="1"/>
+                        </div>
+                        <label for="xaa_aa_close_height" groups="base.group_no_one"/>
+                        <div id="xaa_aa_close_height" groups="base.group_no_one">
+                            <field name="xaa_aa_close_height" class="oe_inline"/>
+                        </div>
+                        <label for="xaa_aa_header_image"/>
+                        <div id="xaa_aa_header_image">
+                            <field class="oe_inline" name="xaa_aa_header_image"
+                                   filename="xaa_aa_file_name_header" />
+                            <field class="oe_inline" name="xaa_aa_file_name_header"
+                                   invisible="1"/>
+                        </div>
+                        <label for="xaa_aa_footer_image"/>
+                        <div id="xaa_aa_footer_image">
+                            <field class="oe_inline" name="xaa_aa_footer_image"
+                                   filename="xaa_aa_file_name_footer" />
+                            <field class="oe_inline" name="xaa_aa_file_name_footer"
+                                   invisible="1" />
+                        </div>
+                        <field name="xaa_aa_hide_pricing_tab"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

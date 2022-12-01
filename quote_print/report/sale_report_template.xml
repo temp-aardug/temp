@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_saleorder_document"
+                  inherit_id="sale.report_saleorder_document"
+                  name="sale report inherit">
+            <xpath expr="//thead/tr/th[@name='th_priceunit']" position="attributes">
+                <attribute name="t-if">not doc.xaa_aa_show_only_total</attribute>
+            </xpath>
+            <xpath expr="//td[@name='td_priceunit']" position="attributes">
+                <attribute name="t-if">not doc.xaa_aa_show_only_total</attribute>
+            </xpath>
+            <xpath expr="//thead/tr/th[@name='th_discount']" position="attributes">
+                <attribute name="t-if">not doc.xaa_aa_show_only_total</attribute>
+            </xpath>
+            <xpath expr="//td[@t-if='display_discount']" position="attributes">
+                <attribute name="t-if">not doc.xaa_aa_show_only_total</attribute>
+            </xpath>
+            <xpath expr="//thead/tr/th[@name='th_taxes']" position="attributes">
+                <attribute name="t-if">not doc.xaa_aa_show_only_total</attribute>
+            </xpath>
+            <xpath expr="//td[@name='td_taxes']" position="attributes">
+                <attribute name="t-if">not doc.xaa_aa_show_only_total</attribute>
+            </xpath>
+            <xpath expr="//thead/tr/th[@name='th_subtotal']" position="attributes">
+                <attribute name="t-if">not doc.xaa_aa_show_only_total</attribute>
+            </xpath>
+            <xpath expr="//td[@name='td_subtotal']" position="attributes">
+                <attribute name="t-if">not doc.xaa_aa_show_only_total</attribute>
+            </xpath>
+            <xpath expr="//thead/tr/th[@name='th_quantity']" position="replace">
+            </xpath>
+            <xpath expr="//td[@name='td_quantity']" position="replace">
+            </xpath>
+            <xpath expr="//thead/tr/th[@name='th_description']" position="before">
+                <th name="th_quantity" class="text-left">Quantity</th>
+            </xpath>
+            <xpath expr="//td[@name='td_name']" position="before">
+                <td name="td_quantity" class="text-left">
+                    <span t-field="line.product_uom_qty"
+                          t-options='{"widget": "float", "precision": 0}'/>
+                    <span t-field="line.product_uom"/>
+                </td>
+            </xpath>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_quote_close">
+            <t t-call="web.basic_layout">
+                <t t-set="o" t-value="docs"/>
+                <t t-foreach="docs" t-as="close">
+                    <div class="header"/>
+                    <div class="page" style="margin-left:-15px;
+                                             margin-right:-15px;">
+                        <!-- <img t-att-src="'data:image/png;base64,%s' % to_text(close.xaa_aa_close_image)" t-att-style="'height:'+str(close.xaa_aa_close_height or 1031)+'px; width:100%;'"/> -->
+                        <img t-if="close.xaa_aa_close_image"
+                             t-att-src="image_data_uri(close.xaa_aa_close_image)"
+                             style="height:'+str(close.xaa_aa_close_height or 1031)+'px;
+                             width:100%;"/>
+                    </div>
+                    <div class="footer"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

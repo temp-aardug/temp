@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- sale Layout header -->
+        <template id="ec_sale_external_layout_header">
+            <div class="header">
+               <img t-if="doc.company_id.logo"
+                t-att-src="image_data_uri(doc.company_id.logo)"
+                style="max-height:120px;width:100%;"/>
+            </div>
+        </template>
+
+        <!-- sale Layout footer -->
+        <template id="ec_sale_external_layout_footer">
+            <div class="footer o_standard_footer">
+                  <img t-if="doc.company_id.logo"
+                    t-att-src="image_data_uri(doc.company_id.logo)" style="max-height:120px;width:100%;"/>
+            </div>
+        </template>
+
+        <template id="external_layout_header_custom">
+            <t t-call="quote_print.ec_sale_external_layout_header" />
+            <div class="article o_report_layout_standard"
+                 t-att-data-oe-model="o and o._name"
+                 t-att-data-oe-id="o and o.id"
+                 t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-call="web.address_layout"/>
+                <t t-out="0"/>
+            </div>
+            <t t-if="doc.sale_order_template_id and doc.sale_order_template_id.xaa_aa_isfooteradrsimg_first_page">
+                <div class="footer"/>
+            </t>
+            <t t-else="">
+                <t t-call="quote_print.ec_sale_external_layout_footer"/>
+            </t>
+        </template>
+        <template id="ec_report_saleorder_document"
+                  inherit_id="sale.report_saleorder_document">
+            <xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+                <attribute name="t-call">quote_print.external_layout_header_custom</attribute>
+            </xpath>
+        </template>
+    </data>
+</odoo>

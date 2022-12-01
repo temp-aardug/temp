@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--        <template id="assets_frontend" inherit_id="web.assets_frontend" name="Website Frontend Assets">-->
+<!--            <xpath expr="." position="inside">-->
+<!--                <script type="text/javascript" src="/quote_print/static/src/js/quotation_send.js"/>-->
+<!--            </xpath>-->
+<!--        </template>-->
+        <template id="custom_so_template"
+                  inherit_id="sale_quotation_builder.so_template"
+                  name="Custom SO Template">
+            <xpath expr="//section[@id='terms']" position="before">
+                <div class="alert alert-info mt16" t-ignore="True" role="status">
+                    <strong>Template footer:</strong> 
+                        The text of this footer is displayed on all offers
+                        after the actual quotation text.
+                </div>
+                <div class="oe_no_empty" 
+                     t-field="template.xaa_aa_website_desc_footer"/>
+                <div class="alert alert-info mt16" t-ignore="True" role="status">
+                    <strong>Template footer after first Template Footer:</strong>
+                    The text of this footer is printed on printed quotations only.
+                </div>
+                <div class="oe_no_empty"
+                     t-field="template.xaa_aa_website_desc_footer_bellow"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

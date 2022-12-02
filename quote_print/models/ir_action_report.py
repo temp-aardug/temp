@@ -24,9 +24,10 @@ class IrActionsReport(models.Model):
     @api.model
     def _render_qweb_html(self, report_ref, docids, data=None):
         html = super(IrActionsReport, self)._render_qweb_html(report_ref,
-            docids, data=data)
-        if (self.model != 'sale.order' and
-            self.report_name != 'quote_print.report_web_quotation_custom'):
+            docids, data)
+        report = self._get_report(report_ref)
+        if (report.model != 'sale.order' and
+            report.report_name != 'quote_print.report_web_quotation_custom'):
             return html
 
         variables = re.findall(b'\${custom:.*?}', html[0])
@@ -77,14 +78,12 @@ class IrActionsReport(models.Model):
     def _render_qweb_pdf(self, report_ref, res_ids=None, data=None):
         """This method generates and returns pdf version with background of a
            report."""
-        
-        report_sudo = self._get_report(report_ref)
-        self = report_sudo
         temporary_files = []
         pdf = super(IrActionsReport, self)._render_qweb_pdf(report_ref,
-            res_ids, data=data)
-        if (self.model != 'sale.order' and
-            self.report_name != 'quote_print.custom_web_quote_print'):
+            res_ids, data)
+        report = self._get_report(report_ref)
+        if (report.model != 'sale.order' and
+            report.report_name != 'quote_print.custom_web_quote_print'):
             return pdf
         soId = res_ids[0] if isinstance(res_ids, list) else res_ids
         so = self.env['sale.order'].browse(soId)

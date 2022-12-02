@@ -104,8 +104,14 @@ class SaleQuoteTemplateInh(models.Model):
 
     def write(self, values):
         result = super(SaleQuoteTemplateInh, self).write(values)
-        if (self.xaa_aa_cover_image and values.get('xaa_aa_cover_height')) or \
-            (self.xaa_aa_close_image and values.get('xaa_aa_close_height')):
+        if self.xaa_aa_cover_image and values.get('xaa_aa_cover_height'):
+            self.generate_pdf()
+        if values.get('xaa_aa_cover_image'):
+            self.generate_pdf()
+
+        if self.xaa_aa_close_image and values.get('xaa_aa_close_height'):
+            self.generate_pdf()
+        if values.get('xaa_aa_close_image'):
             self.generate_pdf()
         return result
 
@@ -113,13 +119,13 @@ class SaleQuoteTemplateInh(models.Model):
         if not self.xaa_aa_cover_image:
             self.write({
                 'xaa_aa_cover_image_pdf': None,
-                'self.xaa_aa_file_name_cover_pdf':None
+                'xaa_aa_file_name_cover_pdf': None
             })
         else:
             reportAct = self.env.ref('quote_print.report_web_quote_cover')
             if reportAct:
-                pdf_bin, _ = reportAct._render_qweb_pdf(reportAct.report_name,
-                    res_ids=reportAct.id)
+                pdf_bin, _ = reportAct._render_qweb_pdf('quote_print.report_web_quote_cover',
+                    res_ids=[self.id])
                 self.xaa_aa_cover_image_pdf = base64.b64encode(pdf_bin)
                 self.xaa_aa_file_name_cover_pdf = (self.xaa_aa_file_name_cover.split('.')[0] or 'cover') + '.pdf'
         if not self.xaa_aa_close_image:
@@ -132,7 +138,7 @@ class SaleQuoteTemplateInh(models.Model):
                 reportCloseAct = self.env.ref('quote_print.report_web_quote_close')
                 if reportCloseAct:
                     closepdf_bin, _ = reportCloseAct._render_qweb_pdf(
-                        reportCloseAct.report_name,res_ids=reportCloseAct.id)
+                        reportCloseAct.report_name,res_ids=[self.id])
                     self.write({
                         'xaa_aa_close_image_pdf' : base64.b64encode(closepdf_bin),
                         'xaa_aa_file_name_close_pdf' : (

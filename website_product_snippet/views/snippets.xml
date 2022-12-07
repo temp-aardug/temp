@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="solar_panel_product_snippet" name="Logo - Text - Icon">
+        <section class="s_text_image pt32 pb32">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="pt16 pb16 col-lg-5 o_colored_level">
+                        <div>
+                            <img id="xaa_ec_logo" t-attf-src="/web/image/product.template/{{product_id}}/xaa_ec_logo" class="img img-fluid mx-auto padding-xl" alt=""/>
+                        </div>
+                        <p id="xaa_ec_name" style="font-size: 20px;"><b>A Section Title</b></p>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div style="width:10%;">
+                                    <img id="xaa_ec_point1_icon" t-attf-src="/web/image/product.template/{{product_id}}/xaa_ec_point1_icon" class="img img-fluid mx-auto" alt=""/>
+                                </div>
+                                <div style="width:80%;margin:6px;">
+                                    <p id="xaa_ec_point1_title" style="margin: auto; font-size: 16px;"><b>A Point 1 Title</b></p>
+                                    <p id="xaa_ec_point1_desc" style="font-size: 14px;">Write one or two paragraphs describing your point 1.</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div style="width:10%;">
+                                    <img id="xaa_ec_point2_icon" t-attf-src="/web/image/product.template/{{product_id}}/xaa_ec_point2_icon" class="img img-fluid mx-auto" alt=""/>
+                                </div>
+                                <div style="width:80%;margin:6px;">
+                                    <p id="xaa_ec_point2_title" style="margin: auto; font-size: 16px;"><b>A Point 2 Title</b></p>
+                                    <p id="xaa_ec_point2_desc" style="font-size: 14px;">Write one or two paragraphs describing your point 2.</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div style="width:10%;">
+                                    <img id="xaa_ec_point3_icon" t-attf-src="/web/image/product.template/{{product_id}}/xaa_ec_point3_icon" class="img img-fluid mx-auto" alt=""/>
+                                </div>
+                                <div style="width:80%;margin:6px;">
+                                    <p id="xaa_ec_point3_title" style="margin: auto; font-size: 16px;"><b>A Point 3 Title</b></p>
+                                    <p id="xaa_ec_point3_desc" style="font-size: 14px;">Write one or two paragraphs describing your point 3.</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div style="width:10%;">
+                                    <img id="xaa_ec_point4_icon" t-attf-src="/web/image/product.template/{{product_id}}/xaa_ec_point4_icon" class="img img-fluid mx-auto" alt=""/>
+                                </div>
+                                <div style="width:80%;margin:6px;">
+                                    <p id="xaa_ec_point4_title" style="margin: auto; font-size: 16px;"><b>A Point 4 Title</b></p>
+                                    <p id="xaa_ec_point4_desc" style="font-size: 14px;">Write one or two paragraphs describing your point 4.</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div style="width:10%;">
+                                    <img id="xaa_ec_point5_icon" t-attf-src="/web/image/product.template/{{product_id}}/xaa_ec_point5_icon" class="img img-fluid mx-auto" alt=""/>
+                                </div>
+                                <div style="width:80%;margin:6px;">
+                                    <p id="xaa_ec_point5_title" style="margin: auto; font-size: 16px;"><b>A Point 5 Title</b></p>
+                                    <p id="xaa_ec_point5_desc" style="font-size: 14px;">Write one or two paragraphs describing your point 5.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt16 pb16 col-lg-7 o_colored_level">
+                        <img id="xaa_ec_product_image" t-attf-src="/web/image/product.template/{{product_id}}/xaa_ec_product_image" class="img img-fluid mx-auto" alt=""/>
+                        <img id="xaa_ec_product_image_opt" t-attf-src="/web/image/product.template/{{product_id}}/xaa_ec_product_image_opt" class="img img-fluid mx-auto" alt=""/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="adding_new_snippet_to_website_snippetsr" inherit_id="website.snippets" name="Place into building blocks bar">
+        <xpath expr="//div[@id='snippet_structure']" position="inside">
+            <xpath expr="//div[hasclass('o_panel_header')]" position="inside">
+                <script>
+                    product_snippet();
+                </script>
+            </xpath>
+            <div class="o_panel_body">
+                <t t-snippet="website_product_snippet.solar_panel_product_snippet" t-thumbnail="/website_product_snippet/static/src/images/s_text_image.svg"/>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

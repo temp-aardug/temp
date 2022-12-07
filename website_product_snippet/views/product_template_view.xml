@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_template_form_view_inh">
+            <field name="name">product.template.product.website.form.inh</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='uom_po_id']" position="after">
+                    <field name="xaa_ec_desciption"/>
+                </xpath>
+                <xpath expr="//page[@name='purchase']" position="before">
+                    <page name="website" string="Website" attrs="{'invisible': [('sale_ok','=',False)]}">
+                        <group name="solar_panel_snippet" string="Solar Panel Snippet">
+                            <group>
+                                <field name="xaa_ec_logo" widget="image"/>
+                                <field name="xaa_ec_point1_icon" widget="image" class="oe_avatar" style="float:left;"/>
+                                <field name="xaa_ec_point1_title"/>
+                                <field name="xaa_ec_point1_desc"/>
+                                <field name="xaa_ec_point2_icon" widget="image" class="oe_avatar" style="float:left;"/>
+                                <field name="xaa_ec_point2_title"/>
+                                <field name="xaa_ec_point2_desc"/>
+                                <field name="xaa_ec_point3_icon" widget="image" class="oe_avatar" style="float:left;"/>
+                                <field name="xaa_ec_point3_title"/>
+                                <field name="xaa_ec_point3_desc"/>
+                            </group>
+                            <group>
+                                <field name="xaa_ec_product_image" widget="image"/>
+                                <field name="xaa_ec_product_image_opt" widget="image"/>
+                                <field name="xaa_ec_point4_icon" widget="image" class="oe_avatar" style="float:left;"/>
+                                <field name="xaa_ec_point4_title"/>
+                                <field name="xaa_ec_point4_desc"/>
+                                <field name="xaa_ec_point5_icon" widget="image" class="oe_avatar" style="float:left;"/>
+                                <field name="xaa_ec_point5_title"/>
+                                <field name="xaa_ec_point5_desc"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

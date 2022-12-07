@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherited form view of res.partner -->
+        <record id="locatie_partner_view" model="ir.ui.view">
+            <field name="name">locatie.partner.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='internal_notes']" position="after">
+                    <page name="locaties" string="Locaties">
+                        <group colspan="2" col="2">
+                            <field name="locaties_ids" nolabel="1"/>
+                            <field name="user_lang" invisible="1"/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//span[@name='address_name']" position="replace">
+                    <span class="o_form_label o_td_label" name="address_name">
+                        <field name="type"
+                               attrs="{'invisible': [('is_company','=', True)], 'required': [('is_company','!=', True)], 'readonly': [('user_ids', '!=', [])]}"
+                               class="font-weight-bold"/>
+                        <b attrs="{'invisible': [('user_lang', '!=', 'English (US)')]}">Company Address</b>
+                        <b attrs="{'invisible': [('user_lang', '!=', 'Dutch / Nederlands')]}">Bedrijfsadres</b>
+                    </span>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherited form view of maintenance.equipment -->
+        <record id="locatie_hr_equipment_view_form" model="ir.ui.view">
+            <field name="name">locatie.equipment.form.view</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location']" position="after">
+                    <field name="locatie_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherited form view of helpdesk.ticket -->
+        <record id="locatie_helpdesk_ticket_view_form" model="ir.ui.view">
+            <field name="name">locatie.equipment.form.view</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='priority']" position="after">
+                    <field name="locatie_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherited form view of maintenance.request -->
+        <record id="locatie_maintenance_request_view_form" model="ir.ui.view">
+            <field name="name">locatie.maintenance.request.form.view</field>
+            <field name="model">maintenance.request</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="locatie_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

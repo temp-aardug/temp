@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Model locatie.stage form -->
+        <record id="locatie_stage_view_form" model="ir.ui.view">
+            <field name="name">locatie.stage.view.form</field>
+            <field name="model">locatie.stage</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet string="Location">
+                        <widget name="web_ribbon" text="Archive" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
+                        <field name="active" widget="boolean_toggle"/>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Model locatie.stage tree -->
+        <record id="locatie_stage_view_tree" model="ir.ui.view">
+            <field name="name">locatie.stage.view.tree</field>
+            <field name="model">locatie.stage</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Model locatie.stage map -->
+        <record id="locatie_stage_view_action" model="ir.actions.act_window">
+            <field name="name">Location Stages</field>
+            <field name="res_model">locatie.stage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Model locatie.stage form -->
+        <record id="locatie_tag_view_form" model="ir.ui.view">
+            <field name="name">locatie.tag.view.form</field>
+            <field name="model">locatie.tag</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet string="Location Tag">
+                        <widget name="web_ribbon" text="Archive" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
+                        <field name="active" widget="boolean_toggle"/>
+                        <field name="name"/>
+                        <field name="color"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Model locatie.stage tree -->
+        <record id="locatie_tag_view_tree" model="ir.ui.view">
+            <field name="name">locatie.tag.view.tree</field>
+            <field name="model">locatie.tag</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                    <field name="color"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Model locatie.stage map -->
+        <record id="locatie_tag_view_action" model="ir.actions.act_window">
+            <field name="name">Location Tags</field>
+            <field name="res_model">locatie.tag</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menus -->
+        <menuitem
+                name="Configuration"
+                id="menu_main_locatie_config"
+                parent="locaties.menu_main_locatie"
+                sequence="3"/>
+        <menuitem
+                id="menu_locatie_stages"
+                name="Location Stage"
+                action="locatie_stage_view_action"
+                parent="locaties.menu_main_locatie_config"
+                sequence="31"/>
+        <menuitem
+                id="menu_locatie_tags"
+                name="Location Tags"
+                action="locatie_tag_view_action"
+                parent="locaties.menu_main_locatie_config"
+                sequence="32"/>
+    </data>
+</odoo>

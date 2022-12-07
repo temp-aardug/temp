@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_locatie_locatie,access_locatie_locatie,locaties.model_locatie_locatie,base.group_user,1,1,1,1
+access_locatie_stage,access_locatie_stage,locaties.model_locatie_stage,base.group_user,1,1,1,1
+access_locatie_tag,access_locatie_tag,locaties.model_locatie_tag,base.group_user,1,1,1,1

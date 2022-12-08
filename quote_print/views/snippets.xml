@@ -8,6 +8,7 @@
                 <p style="page-break-before:always;"></p>
             </section>
         </template>
+
         <template id="website.s_features" name="Features">
             <section class="s_features pt32 pb32">
                 <div class="container">
@@ -42,6 +43,43 @@
                 </div>
             </section>
         </template>
+
+        <template id="website.s_image_text" name="Image - Text">
+            <section class="s_text_image pt32 pb32">
+                <div class="container" style="height:100%;">
+                    <div class="row">
+                        <div class="col-lg-6 pt16 pb16" style="width:55%;padding-right:10px;">
+                            <img src="/web/image/website.s_image_text_default_image" class="img img-fluid mx-auto" alt=""/>
+                        </div>
+                        <div class="col-lg-6 pt16 pb16" style="width:45%;">
+                            <h2>Section Subtitle</h2>
+                            <p>Write one or two paragraphs describing your product or services. To be successful your content needs to be useful to your readers.</p>
+                            <p>Start with the customer – find out what they want and give it to them.</p>
+                            <p><a href="#" class="btn btn-primary mb-2">Discover more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </template>
+
+        <template id="website.s_text_image" name="Text - Image">
+            <section class="s_text_image pt32 pb32">
+                <div class="container" style="height:100%;">
+                    <div class="row">
+                        <div class="col-lg-6 pt16 pb16" style="width:45%;">
+                            <h2>A Section Subtitle</h2>
+                            <p>Write one or two paragraphs describing your product or services. To be successful your content needs to be useful to your readers.</p>
+                            <p>Start with the customer – find out what they want and give it to them.</p>
+                            <p><a href="#" class="btn btn-primary mb-2">Learn more</a></p>
+                        </div>
+                        <div class="col-lg-6 pt16 pb16" style="width:55%;padding-right:10px;">
+                            <img src="/web/image/website.s_text_image_default_image" class="img img-fluid mx-auto" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </template>
+
         <template name="Place into bar" id="place_into_bar"
                   inherit_id="website.snippets">
               <xpath expr="//div[@id='snippet_content']/div[hasclass('o_panel_body')]"

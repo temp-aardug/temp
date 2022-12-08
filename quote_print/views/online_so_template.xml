@@ -325,7 +325,7 @@
             </div>
             <!-- Remove this code because of this functinality is used
                 in saperate module for ecogreen -->
-            <!-- <div t-field="sale_order.website_description" class="oe_no_empty"/>
+           <!--  <div t-field="sale_order.website_description" class="oe_no_empty"/>
             <t t-set="lines" t-value="sale_order.check_line_description()"/>
             <t t-foreach="lines" t-as="line">
                 <a t-att-id="line.id"/>

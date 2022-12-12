@@ -16,7 +16,7 @@
                     <!-- if sale order lines have description then it's also show-->
                     <!-- Remove this code because of this functinality is used
                          in saperate module for ecogreen-->
-                    <!-- <t t-set="lines" t-value="sale_order.check_line_description()"/>
+                    <t t-set="lines" t-value="sale_order.check_line_description()"/>
                     <t t-foreach="lines" t-as="line">
                         <a t-att-id="line.id"/>
                         <t t-if="line.website_description and line.website_description != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'">
@@ -24,7 +24,7 @@
                             style="margin-left: 90px; margin-right:90px;"/>
                             <p style="page-break-before:always;"> </p>
                         </t>
-                    </t> -->
+                    </t>
 
                     <div class="raw" style="margin-left: 90px;margin-right:90px;">
                         <t t-if="sale_order.sale_order_template_id and not sale_order.sale_order_template_id.xaa_aa_hide_pricing_tab and sale_order.amount_total &gt; 0 ">

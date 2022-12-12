@@ -28,19 +28,19 @@ class SaleOrderInherit(models.Model):
             res['context']['default_template_id'] = confirmed_mail and confirmed_mail.id
         return res
 
-    # def check_line_description(self):
-    #     ''' this method will check sale order has multiple same product
-    #         then it will return only single order line for print it's description
-    #         on report.
-    #     '''
-    #     order_product = []
-    #     order_line = []
-    #     for line in self.order_line:
-    #         if line.product_id not in order_product:
-    #             order_product.append(line.product_id)
-    #             order_line.append(line.id)
-    #     sale_order_line = self.env['sale.order.line'].browse(order_line)
-    #     return sale_order_line
+    def check_line_description(self):
+        ''' this method will check sale order has multiple same product
+            then it will return only single order line for print it's description
+            on report.
+        '''
+        order_product = []
+        order_line = []
+        for line in self.order_line:
+            if line.product_id not in order_product:
+                order_product.append(line.product_id)
+                order_line.append(line.id)
+        sale_order_line = self.env['sale.order.line'].browse(order_line)
+        return sale_order_line
 
 
     @api.onchange('sale_order_template_id')

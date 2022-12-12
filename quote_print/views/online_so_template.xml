@@ -325,12 +325,12 @@
             </div>
             <!-- Remove this code because of this functinality is used
                 in saperate module for ecogreen -->
-           <!--  <div t-field="sale_order.website_description" class="oe_no_empty"/>
+            <div t-field="sale_order.website_description" class="oe_no_empty"/>
             <t t-set="lines" t-value="sale_order.check_line_description()"/>
             <t t-foreach="lines" t-as="line">
                 <a t-att-id="line.id"/>
                 <div t-att-class="'oe_no_empty' if line.website_description else 'oe_no_empty d-print-none'" t-field="line.website_description"/>
-            </t> -->
+            </t>
             <div class="oe_structure"/>
                 <!-- Pricing -->
                 <t t-if="sale_order.sale_order_template_id and not sale_order.sale_order_template_id.xaa_aa_hide_pricing_tab and sale_order.amount_total &gt; 0 ">

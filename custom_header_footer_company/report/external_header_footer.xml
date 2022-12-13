@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="quote_print.ec_sale_external_layout_header">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+        <div class="header" style="margin-left:-15px;margin-right:-15px;">
+            <t t-if="doc.sale_order_template_id and doc.sale_order_template_id.xaa_aa_header_image">
+                <img t-att-src="image_data_uri(doc.sale_order_template_id.xaa_aa_header_image)"
+                     style="max-height:150px;width:100%;"/>
+            </t>
+            <t t-elif="company.xaa_aa_header_image">
+                <img t-if="company.xaa_aa_header_image"
+                     t-att-src="image_data_uri(company.xaa_aa_header_image)"
+                     style="max-height:150px;width:100%;"/>
+            </t>
+            <t t-elif="not company.xaa_aa_header_image">
+                <img t-if="company.logo"
+                     t-att-src="image_data_uri(company.logo)"
+                     style="max-height:150px;width:100%;"/>
+            </t>
+        </div>
+    </template>
+
+    <template id="quote_print.ec_sale_external_layout_footer">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+        <div class="footer" style="margin-left:-15px;margin-right:-15px;">
+            <t t-if="doc.sale_order_template_id and doc.sale_order_template_id.xaa_aa_footer_image">
+                <img t-att-src="image_data_uri(doc.sale_order_template_id.xaa_aa_footer_image)"
+                     style="max-height:235px;width:100%;"/>
+            </t>
+            <t t-elif="company.xaa_aa_footer_image">
+                <img t-if="company.xaa_aa_footer_image"
+                     t-att-src="image_data_uri(company.xaa_aa_footer_image)"
+                     style="max-height:235px;width:100%;"/>
+            </t>
+            <t t-elif="not company.xaa_aa_footer_image">
+                <img t-if="company.logo"
+                     t-att-src="image_data_uri(company.logo)"
+                     style="max-height:235px;width:100%;"/>
+            </t>
+        </div>
+    </template>
+
+    <template id="custom_footer" name="Custom Footer">
+        <div class="footer" style="margin-left:-15px;margin-right:-15px;">
+            <img t-if="company.xaa_aa_footer_image"
+                 t-att-src="image_data_uri(company.xaa_aa_footer_image)"
+                 style="max-height: 235px;width:100%;"/>
+        </div>
+    </template>
+
+    <template id="custom_header" name="Custom Header">
+        <div class="header" style="margin-left:-15px;margin-right:-15px;">
+            <img t-if="company.xaa_aa_header_image"
+                 t-att-src="image_data_uri(company.xaa_aa_header_image)"
+                 style="max-height:150px;width:100%;"/>
+        </div>
+    </template>
+
+    <template id="web.external_layout">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id"></t>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"></t>
+        </t>
+        <t t-if="not company.xaa_aa_for_all_report">
+            <t t-if="company.external_report_layout_id" t-call="{{company.external_report_layout_id.key}}"><t t-out="0"/></t>
+            <t t-else="else" t-out="0"/>
+        </t>
+        <t t-if="company.xaa_aa_for_all_report">
+            <t t-call="custom_header_footer_company.custom_header" />
+            <div class="article o_report_layout_standard"
+                 t-att-data-oe-model="o and o._name"
+                 t-att-data-oe-id="o and o.id"
+                 t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-call="web.address_layout"/>
+                <t t-out="0"/>
+            </div>
+            <t t-call="custom_header_footer_company.custom_footer" />
+        </t>
+    </template>
+</odoo>

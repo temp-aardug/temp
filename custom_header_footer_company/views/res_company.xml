@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_company_form_custom" model="ir.ui.view">
+            <field name="name">res.company.form.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="custom_header_footer.view_company_form_custom"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='all_report']" position="inside">
+                    <field name="xaa_aa_header_image" filename="xaa_aa_file_name_header"/>
+                    <field name="xaa_aa_file_name_header" invisible="1"/>
+                    <field name="xaa_aa_footer_image" filename="xaa_aa_file_name_footer"/>
+                    <field name="xaa_aa_file_name_footer" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

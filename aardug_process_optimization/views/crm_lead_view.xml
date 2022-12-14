@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+		<record model="ir.ui.view" id="opportunity_code_form_view">
+            <field name="name">opportunity.code.form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form" />
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="xaa_aa_code" class="oe_inline" required="True"/>
+                    <label for="xaa_aa_code" string=" - " class="oe_inline" />
+                </field>
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="x_aa_po_alias"/>
+                </xpath>
+            </field>
+        </record>
+</odoo>

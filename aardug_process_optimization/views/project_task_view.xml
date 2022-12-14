@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="project_task_inherit_view" model="ir.ui.view">
+		<field name="name">project.task</field>
+		<field name="model">project.task</field>
+		<field name="inherit_id" ref="project.view_task_form2"/>
+		<field name="arch" type="xml">
+			   <field name="name" position="before">
+                    <field name="x_aa_po_code" class="oe_inline" />
+                    <label for="x_aa_po_code" string=" - " class="oe_inline" />
+                </field>
+			    <xpath expr="//button[@name='action_open_ratings']"
+					   position="after">
+                        <button name="action_ticket" type="object"
+								class="oe_stat_button" icon="fa-tasks" >
+                                   <field name="x_aa_po_ticket_count"
+										  string="Tickets" widget="statinfo"/>
+                        </button>
+				  </xpath>
+			  <xpath expr="//field[@name='tag_ids']" position="after">
+				  <field name="xaa_aa_task_alias"/>
+			  </xpath>
+			  <xpath expr="//page[@name='extra_info']" position="after">
+			  		<page string="Odoo klantinfo">
+						<group>
+							<group>
+								<field name="x_aa_po_odoo_version"/>
+								<field name="x_aa_po_aardug_responsible"/>
+								<field name="x_aa_po_aardug_project_leader"/>
+							</group>
+							<group>
+								<field name="x_aa_po_hosting"/>
+								<field name="x_aa_po_project"/>
+								<field name="x_aa_po_odoo_info"/>
+							</group>
+						</group>
+                	</page>
+					<page string="Ticket">
+						<group>
+							<field name="x_aa_po_ticket"/>
+							<field name="x_aa_po_ticket_nr"/>
+							<field name="x_aa_po_status"/>
+						</group>
+					</page>
+					<page string="Caret">
+						<group>
+								<group>
+									<field name="x_aa_po_project_leader_id"/>
+									<field name="x_aa_po_team_member_ids"
+										   widget="many2many_tags"/>
+									<field name="x_aa_po_note"/>
+									<field name="x_aa_po_job_nr_caret"/>
+								</group>
+								<group>
+									<field name="x_aa_po_expected_start_date"/>
+									<field name="x_aa_po_expected_delivery_date"/>
+									<field name="x_aa_po_real_start_date"/>
+									<field name="x_aa_po_real_delivery_date"/>
+								</group>
+						</group>
+					</page>
+			  </xpath>
+			<xpath expr="//form/header" position="inside">
+				<button name="x_aa_po_email_sent_to_caret" string="Email to Caret"
+					    type="object" class="oe_highlight"/>
+			</xpath>
+			<xpath expr="//page[@name='description_page']" position="inside">
+				<field name="xaa_aa_attachment_ids"/>
+			</xpath>
+		</field>
+	</record>
+</odoo>

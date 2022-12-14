@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="res_partner_inherit_aardug_process_optimization_view" model="ir.ui.view">
+		<field name="name">res.partner.aardug_process_optimization.form</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base.view_partner_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//page[@name='internal_notes']" position="after">
+				<page name="Odoo_klantinfo" string="Odoo klantinfo">
+					<group>
+						<group>
+                    		<field name="x_aa_po_odoo_version"/>
+                    		<field name="x_aa_po_aardug_responsible"/>
+                    		<field name="x_aa_po_aardug_project_leader"/>
+						</group>
+						<group>
+							<field name="x_aa_po_hosting"/>
+                    		<field name="project"/>
+                    		<field name="x_aa_po_odoo_info"/>
+						</group>
+					</group>
+                </page>
+			</xpath>
+		</field>
+	</record>
+</odoo>

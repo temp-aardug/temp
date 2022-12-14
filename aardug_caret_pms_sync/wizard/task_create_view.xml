@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="caret_task_create_view_form" model="ir.ui.view">
+        <field name="name">caret.task.create.form</field>
+        <field name="model">caret.task.create</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="x_aa_project_id"/>
+                        </group>
+                        <group>
+                            <field name="x_aa_task_id" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Create" name="action_create"
+                            type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="message_wizard_form" model="ir.ui.view">
+        <field name="name">message.wizard.form</field>
+        <field name="model">message.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <p class="text-center">
+                    <field name="x_aa_message"/>
+                </p>
+                <footer>
+                    <button name="action_ok" string="Ok" type="object"
+                            default_focus="1" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

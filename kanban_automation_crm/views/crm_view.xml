@@ -29,6 +29,7 @@
                     <field name="xaa_aa_action_color" />
                     <field name="xaa_aa_priority"/>
                     <field name="xaa_aa_crm_stage_id" readonly="1"/>
+                    <field name="xaa_aa_crm_stage_to"/>
                     <field name="xaa_aa_custom_action_id"/>
                     <field name="xaa_aa_send_mail"/>
                     <field name="xaa_aa_mail_action"/>

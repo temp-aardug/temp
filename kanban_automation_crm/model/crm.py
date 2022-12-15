@@ -177,6 +177,8 @@ class CrmLead(models.Model):
                                 rec.xaa_aa_warning_mail = True
                             if stage.xaa_aa_custom_action_id and not stage in rec.xaa_aa_custom_ids:
                                 self._do_custom_action(rec, stage, current_date)
+                            if stage.xaa_aa_crm_stage_to and rec.stage_id.id != stage.xaa_aa_crm_stage_to.id:
+                                rec.stage_id = stage.xaa_aa_crm_stage_to.id
                 except Exception as e:
                     _logger.error("Error in record <%s>, so skipped this record to fix mail issue ", rec.id)
                     continue
@@ -281,6 +283,7 @@ class CrmStageCustom(models.Model):
         [('oranje', 'Orange'), ('red', 'Red'), ('green', 'Green'), ('purple', 'Purple')],
         string='Colors', required=True)
     xaa_aa_action_perform = fields.Many2one('crm.field.config', required=True, string='Action perform')
+    xaa_aa_crm_stage_to = fields.Many2one('crm.stage', string='Stage to')
 
     @api.constrains('xaa_aa_action_time', 'xaa_aa_saction_perform')
     def _check_action_time(self):
